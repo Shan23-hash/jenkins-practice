@@ -10,11 +10,11 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                script {
-                   sh ---
+                script{
+                    sh ---
                        echo "Hello Build"
                        env 
-                   ---
+                    ---
                 }
             }
         }
