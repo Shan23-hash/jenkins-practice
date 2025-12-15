@@ -3,20 +3,27 @@ pipeline {
         label 'AGENT-1'
     }
 
+    //Build
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                script {
+                   echo 'Building..'
+                }
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                script {
+                  echo 'Testing..'
+                }  
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                script {
+                    echo 'Deplying....'
+                }
             }
         }
     }
