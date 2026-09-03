@@ -1,11 +1,12 @@
 pipeline {
-    agent  {
+    agent {
         label 'AGENT-1'
     }
-    environment { 
-        COURSE = 'jenkins'
 
-    // Build
+    environment {
+        COURSE = 'jenkins'
+    }
+
     stages {
         stage('Build') {
             steps {
@@ -17,6 +18,7 @@ pipeline {
                 }
             }
         }
+
         stage('Test') {
             steps {
                 script {
@@ -24,6 +26,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy') {
             steps {
                 script {
@@ -33,16 +36,17 @@ pipeline {
         }
     }
 
-
-    post { 
-        always { 
+    post {
+        always {
             echo 'I will always say Hello again!'
             deleteDir()
         }
-        success { 
+
+        success {
             echo 'Hello Success'
         }
-        failure { 
+
+        failure {
             echo 'Hello Failure'
         }
     }
