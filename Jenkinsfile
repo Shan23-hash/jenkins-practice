@@ -1,8 +1,8 @@
 pipeline {
-    agent {
+    agent  {
         label 'AGENT-1'
     }
-    environment {
+    environment { 
         COURSE = 'jenkins'
     }
     options {
@@ -14,18 +14,26 @@ pipeline {
         text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
         booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
         choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')  
+        password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password') 
     }
+    // Build
     stages {
         stage('Build') {
             steps {
-                script {
+                script{
                     sh """
                         echo "Hello Build"
                         sleep 10
                         env
                         echo "Hello ${params.PERSON}"
                     """
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script{
+                    echo 'Testing..'
                 }
             }
         }
@@ -41,20 +49,23 @@ pipeline {
             steps {
                 script{
                     echo "Hello, ${PERSON}, nice to meet you."
-                    echo 'Deploying...'
+                    
+                    echo 'Deploying..'
                 }
             }
         }
+        
     }
-    post {
-        always {
+
+    post { 
+        always { 
             echo 'I will always say Hello again!'
             deleteDir()
         }
-        success {
+        success { 
             echo 'Hello Success'
         }
-        failure {
+        failure { 
             echo 'Hello Failure'
         }
     }
