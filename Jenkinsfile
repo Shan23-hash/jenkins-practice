@@ -3,24 +3,32 @@ pipeline {
         label 'AGENT-1'
     }
 
+    // Build
     stages {
         stage('Build') {
             steps {
-                echo 'Building...'
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                script {
+                    echo 'Building...'
             }
         }
     }
-    
+        stage('Test') {
+            steps {
+                script {
+                    echo 'Testing...'
+            }
+        }
+    }
+        stage('Deploy') {
+            steps {
+                script {
+                    echo 'Deploying...'
+                }
+            }
+        }
+    }
+
+
     post { 
         always { 
             echo 'I will always say Hello again!'
